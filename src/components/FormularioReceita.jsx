@@ -66,7 +66,7 @@ export default function FormularioReceita() {
     setFeedback({ type: '', message: '' });
 
     try {
-      const response = await fetch('http://localhost:5000/api/receitas', {
+      const response = await fetch('https://optometris-back.onrender.com/api/receitas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
