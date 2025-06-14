@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+/* Define variáveis de cor e a fonte para o formulário */
+.formContainer {
+  --cor-primaria: #0070f3;
+  --cor-primaria-hover: #005bb5;
+  --cor-texto: #333;
+  --cor-label: #555;
+  --cor-borda: #ddd;
+  --cor-borda-foco: #0070f3;
+  --cor-fundo: #fff;
+  --cor-fundo-input: #f9fafb;
+  --raio-borda: 8px;
+
+  font-family: "Inter", sans-serif;
+  background-color: var(--cor-fundo);
+  padding: 1.5rem;
+  border-radius: var(--raio-borda);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.title {
+  text-align: center;
+  color: var(--cor-texto);
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.section {
+  margin-bottom: 2rem;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+/* No mobile, os campos em linha ficam empilhados */
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formContainer label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--cor-label);
+  font-size: 0.9rem;
+}
+
+.formContainer input[type="text"],
+.formContainer input[type="date"] {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--cor-fundo-input);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formContainer input[type="text"]:focus,
+.formContainer input[type="date"]:focus {
+  outline: none;
+  border-color: var(--cor-borda-foco);
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
+}
+
+.readOnlyInput {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+}
+
+.formGroupCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--cor-fundo-input);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  padding: 0.75rem 1rem;
+  margin-top: 1.6rem;
+}
+
+.formGroupCheckbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--cor-primaria);
+}
+
+.formGroupCheckbox label {
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+/* Estilo da Tabela - Mobile First (formato de cards) */
+.prescriptionTable {
+  width: 100%;
+  border: none;
+}
+
+.prescriptionTable thead {
+  display: none; /* Esconde o cabeçalho no mobile */
+}
+
+.prescriptionTable tr {
+  display: block;
+  margin-bottom: 1.5rem;
+  border-radius: var(--raio-borda);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+.prescriptionTable td {
+  display: block;
+  text-align: right;
+  position: relative;
+  padding: 0.75rem 1rem 0.75rem 50%;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.prescriptionTable td:last-child {
+  border-bottom: none;
+}
+
+.prescriptionTable td::before {
+  content: attr(data-label);
+  position: absolute;
+  left: 1rem;
+  font-weight: 500;
+  color: var(--cor-label);
+}
+
+.prescriptionTable td[data-label="Distância"] {
+  background-color: #f3f4f6;
+  font-weight: 700;
+  text-align: center;
+  padding: 0.75rem 1rem;
+}
+
+.prescriptionTable td[data-label="Distância"]::before {
+  content: none;
+}
+
+.prescriptionTable td input {
+  width: 100%;
+  text-align: right;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.submitButton {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: var(--raio-borda);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-top: 2rem;
+}
+
+.submitButton:hover {
+  background-color: var(--cor-primaria-hover);
+  transform: translateY(-2px);
+}
+
+/* --- Media Queries para telas maiores (Tablet e Desktop) --- */
+
+/* A partir de 600px, os campos de dados pessoais ficam lado a lado */
+@media (min-width: 600px) {
+  .formRow {
+    flex-direction: row;
+  }
+}
+
+/* A partir de 768px, a tabela volta ao formato tradicional */
+@media (min-width: 768px) {
+  .formGroupCheckbox {
+    width: 113px;
+    height: 20px;
+  }
+
+  .prescriptionTable thead {
+    display: table-header-group;
+  }
+  .prescriptionTable tr {
+    display: table-row;
+    margin-bottom: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .prescriptionTable td {
+    display: table-cell;
+    padding: 0.8rem;
+    text-align: center;
+    position: static;
+    border: 1px solid #f0f0f0;
+  }
+  .prescriptionTable td::before {
+    content: none;
+  }
+  .prescriptionTable td input {
+    text-align: center;
+    border: none;
+  }
+  .prescriptionTable td[data-label="Distância"] {
+    background-color: #f9fafb;
+    font-weight: bold;
+    text-align: center;
+  }
+
+
+}
+
+/* Estilos de feedback (já existentes) */
+.feedbackSuccess,
+.feedbackError {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: var(--raio-borda);
+  text-align: center;
+  font-weight: 500;
+}
+.feedbackSuccess {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+.feedbackError {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
